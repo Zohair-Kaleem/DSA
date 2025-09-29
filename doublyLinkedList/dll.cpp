@@ -138,6 +138,22 @@ public:
         }
         cout<<endl;
     }
+    void reverse(){
+        Node*temp=head;
+        while (temp)
+        {
+            swap(temp->next,temp->prev);
+            temp=temp->prev;
+        }
+        swap(head,tail);
+        
+    }
+    void mergeTwoDLLs(DLL *list2 ){
+        tail->next=list2->head;
+        list2->head->prev=tail;
+        tail=list2->tail;
+    }
+
 };
 int main(){
     DLL dll;
@@ -146,12 +162,18 @@ int main(){
     dll.addNodeToBeginning(1);
     dll.addNodeToBeginning(0);
     dll.insertAtPosition(-10,3);
-    dll.addToEnd(10);
     dll.print();
-    dll.deleteAtPosition(7);
-    dll.print();
-    dll.printReverse();
-
+   DLL dll2;
+   dll2.addNodeToBeginning(1);
+   dll2.addNodeToBeginning(-12);
+   dll2.addNodeToBeginning(2);
+   dll2.addNodeToBeginning(3);
+   dll2.addNodeToBeginning(5);
+   dll.mergeTwoDLLs(&dll2);
+   dll2.print();
+   dll.print();
+   dll.reverse();
+   dll.print(); 
 
 
 return 0;
